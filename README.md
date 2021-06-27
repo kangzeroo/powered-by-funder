@@ -21,7 +21,7 @@ An embeddable widget for websites to advertise they are crowdfunding. Collects m
 - 🎖  Compatible with `FLoC` (Federated Learning of Cohorts, Google's upcoming replacement for cookies)
 
 ### Nevermind
-- ✨ ~~ Non-intrusive & high performance thanks to `web workers`. Barely touches the main JS thread.~~ nevermind, the juice ain't worth the squeeze due to XSS security protections. [See closed PR.](https://github.com/kangzeroo/powered-by-funder/pull/1#issue-678462557)
+- ✨ <s>Non-intrusive & high performance thanks to `web workers`. Barely touches the main JS thread.</s> nevermind, the juice ain't worth the squeeze due to XSS security protections. [See closed PR.](https://github.com/kangzeroo/powered-by-funder/pull/1#issue-678462557)
 
 ## Setup
 
