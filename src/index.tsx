@@ -23,7 +23,7 @@ import ReactDOM from "react-dom";
 
   ReactDOM.render(
     <React.StrictMode>
-      <span>Crowdfunding powered by Funder</span>
+      <p>Crowdfunding powered by Funder!</p>
     </React.StrictMode>,
     document.getElementById(injectionId)
   );

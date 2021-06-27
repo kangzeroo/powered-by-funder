@@ -3,13 +3,17 @@ const webpack = require("webpack");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const baseConfig = {
+  mode: process.env.NODE_ENV === "production" ? "production" : "development",
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path:
+      process.env.NODE_ENV === "production"
+        ? path.resolve(__dirname, "dist")
+        : path.resolve(__dirname, "demo"),
     libraryTarget: "umd",
     filename: "[name].js",
     umdNamedDefine: true,
   },
-  devtool: "inline-source-map",
+  devtool: process.env.NODE_ENV === "production" ? false : "inline-source-map",
   module: {
     rules: [
       {
@@ -58,11 +62,11 @@ const baseConfig = {
         uglifyOptions: {
           output: {
             // removing comments
-            comments: false,
+            comments: process.env.NODE_ENV === "production" ? true : false,
           },
           compress: {
             // remove console.logs
-            // drop_console: true,
+            comments: process.env.NODE_ENV === "production" ? true : false,
           },
         },
       }),

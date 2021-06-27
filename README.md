@@ -28,14 +28,26 @@ An embeddable widget for websites to advertise they are crowdfunding. Collects m
 To run in watch mode for development, three separate terminal commands are required. This is to avoid the hassle of killing processes using `kill <PID>` since running all 3 commands in the same `npm script` would require running them in the background.
 
 ```
-$ npm run dev-tsc
-$ npm run dev-webpack
-$ npm run dev-express
+$ npm run dev-1
+$ npm run dev-2
+$ npm run dev-3
 ```
 
-The build process is comprised of 2 steps. The first is compiling typescript down to ES5 Javascript in syncronously loaded CommonJS. The second step is compiling the CommonJS into asyncronously loaded UMD for embedding as a `<script>` tag onto websites as a widget.
+The build process is comprised of 2 steps + 1 for development.
+1. The first step runs `tsc` which compiles typescript down to ES5 Javascript in asyncronously loaded AMD.
+2. The second step runs `webpack` which compiles the AMD into UMD so that it works on all browsers.
+3. The third step runs `express` which serves an HTML page at `localhost:8888` for us to see live changes to the widget as we code.
 
 ### Production
+0. Make sure all your dev terminal processes have been paused
 1. `$ npm run build`
 2. Upload `dist/funder.js` to any file system, such as AWS S3 or GCP Storage
 3. Copy the script file link into the `<script>` tag of the target web page
+
+To see what production looks like, you can use `demo/remote.html`. Simply open the html file in your browser. Be sure to update the `<script>` tag src to point to your uploaded prod script.
+
+
+## Fixes Required
+
+1. `$ npm run dev-3` does not hot-reload the local page when changes are made. Add [liveroad package](https://dev.to/rajeshroyal/how-to-live-reload-node-js-server-along-with-hot-reloading-2im0)
+2. Get rid of the weird `ðŸŽ‰` characters appearing beside text in prod `demo/remote.html`
