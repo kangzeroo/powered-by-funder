@@ -20,7 +20,7 @@ const styles = {
     position: "fixed" as "fixed",
     width: "100%",
     backgroundColor: "white",
-    top: "0px",
+    top: "0",
     zIndex: 99,
   },
   banner: {
@@ -30,7 +30,7 @@ const styles = {
     flexDirection: "row" as "row",
     justifyContent: "center",
     alignItems: "center",
-    padding: "15px 0px 15px 0px",
+    padding: "20px 0px 15px 0px",
     height: "30px",
     position: "relative" as "relative",
   },
