@@ -66,6 +66,7 @@ const baseConfig = {
           output: {
             // removing comments
             comments: process.env.NODE_ENV === "production" ? true : false,
+            ascii_only: true,
           },
           compress: {
             // remove console.logs
