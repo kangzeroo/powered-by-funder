@@ -69,7 +69,7 @@ const baseConfig = {
           },
           compress: {
             // remove console.logs
-            drop_console: process.env.NODE_ENV === "production" ? true : false,
+            drop_console: process.env.NODE_ENV === "production" ? false : false,
           },
         },
       }),
@@ -89,6 +89,17 @@ module.exports = [
       ...baseConfig.output,
       filename: "funder.js",
       library: "Funder",
+    },
+  },
+  {
+    ...baseConfig,
+    entry: {
+      "example-worker": "./build/workers/example.worker.js",
+    },
+    output: {
+      ...baseConfig.output,
+      filename: "example.worker.js",
+      library: "exampleWorker",
     },
   },
 ];

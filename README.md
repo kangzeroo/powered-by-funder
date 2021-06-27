@@ -44,10 +44,15 @@ The build process is comprised of 2 steps + 1 for development.
 2. Upload `dist/funder.js` to any file system, such as AWS S3 or GCP Storage
 3. Copy the script file link into the `<script>` tag of the target web page
 
-To see what production looks like, you can use `demo/remote.html`. Simply open the html file in your browser. Be sure to update the `<script>` tag src to point to your uploaded prod script.
+To see what production looks like, you can also upload `demo/remote.html` to AWS S3 or GCP Storage and open it from there as a webpage (it cant be opened from local filesystem as the webworker won't load, it must be over HTTPS). In `demo/remote.html` be sure to update the `<script>` tag src to point to your uploaded prod script first before uploading to S3/GCP.
 
 
 ## Fixes Required
 
-1. `$ npm run dev-3` does not hot-reload the local page when changes are made. Add [liveroad package](https://dev.to/rajeshroyal/how-to-live-reload-node-js-server-along-with-hot-reloading-2im0)
-2. Fix absolute imports so that we don't have to have weird `../../relativeImports`
+### Internal Fixes
+1. Fix absolute imports so that we don't have to have weird `../../relativeImports`
+2. `$ npm run dev-3` does not hot-reload the local page when changes are made. Add [liveroad package](https://dev.to/rajeshroyal/how-to-live-reload-node-js-server-along-with-hot-reloading-2im0) --> My first attempt at this failed
+
+### External Fixes
+1. Fix `tsconfig.json:compilerOptions.skipLibCheck=true`. This should be set to `false` but due to a bug in the core Typescript library, the types for the `webworker` conflict with `[es2015,dom]`. I have added my comment to the [issue thread](https://github.com/microsoft/TypeScript/issues/32435#issuecomment-869098981).
+    - Potentially we can use two `tsconfig.json` files, one for the main script & one for the webworker
