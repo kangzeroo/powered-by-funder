@@ -23,11 +23,11 @@ const DefaultPoweredByFunder = {
   key: "funder",
   message: "⚡️ Powered by Funder",
   duration: 4000,
-  nextPhase: "1",
+  nextPhase: "start",
 };
 const XState: IXState = {
   phases: {
-    "1": {
+    start: {
       key: "1",
       message: "🎉 HEMPITECTURE is fundraising!",
       duration: 2000,
@@ -60,34 +60,38 @@ const App = () => {
   const [showPanel, setShowPanel] = useState<boolean>(false);
   const [message, setMessage] = useState<TPhase>();
   const nodeRef = useRef(null);
+  const panelRef = useRef(showPanel);
 
   useEffect(() => {
-    console.log("showPanel changed to ", showPanel);
-    if (showPanel) {
+    if (panelRef.current) {
       setMessage(DefaultPoweredByFunder);
     } else {
-      const transitionXState = async () => {
-        console.log("transitionXState");
-        let currentPhaseKey = "1";
-        while (!showPanel) {
-          const phase = XState.phases[currentPhaseKey];
-          setMessage(phase);
-          await sleep(phase.duration);
-          console.log(showPanel);
+      const transitionXState = async (currentPhaseKey = "start") => {
+        const phase = XState.phases[currentPhaseKey];
+        setMessage(phase);
+        await sleep(phase.duration);
+        if (!panelRef.current) {
           const nextPhaseIndex = XState.nextPhase(currentPhaseKey);
-          currentPhaseKey = nextPhaseIndex;
+          transitionXState(nextPhaseIndex);
+        } else {
+          setMessage(DefaultPoweredByFunder);
         }
       };
-      transitionXState();
+      transitionXState(message?.key);
     }
-  }, [showPanel]);
+  }, [showPanel, panelRef]);
+
+  const setPanel = (bool: boolean) => {
+    setShowPanel(bool);
+    panelRef.current = bool;
+  };
 
   const expandPanel = () => {
-    setShowPanel(true);
+    setPanel(true);
   };
 
   const closePanel = () => {
-    setShowPanel(false);
+    setPanel(false);
   };
 
   return (
