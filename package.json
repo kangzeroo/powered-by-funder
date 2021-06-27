@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-1": "tsc-watch",
-    "dev-2": "NODE_ENV=development webpack watch",
-    "dev-3": "nodemon --watch demo/funder.js demo.js",
-    "build": "NODE_ENV=production tsc && webpack"
+    "dev-2": "export NODE_ENV=development && webpack watch",
+    "dev-3": "nodemon local-sandbox.js",
+    "build": "export NODE_ENV=production && tsc && webpack"
   },
   "author": "",
   "license": "ISC",

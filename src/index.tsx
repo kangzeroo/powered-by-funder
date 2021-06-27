@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import App from "./components/App";
 
 (() => {
   const message: string = "Hello World";
@@ -23,7 +24,7 @@ import ReactDOM from "react-dom";
 
   ReactDOM.render(
     <React.StrictMode>
-      <p>Crowdfunding powered by Funder!</p>
+      <App />
     </React.StrictMode>,
     document.getElementById(injectionId)
   );

@@ -50,4 +50,4 @@ To see what production looks like, you can use `demo/remote.html`. Simply open t
 ## Fixes Required
 
 1. `$ npm run dev-3` does not hot-reload the local page when changes are made. Add [liveroad package](https://dev.to/rajeshroyal/how-to-live-reload-node-js-server-along-with-hot-reloading-2im0)
-2. Get rid of the weird `ðŸŽ‰` characters appearing beside text in prod `demo/remote.html`
+2. Fix absolute imports so that we don't have to have weird `../../relativeImports`

@@ -2,6 +2,9 @@ const path = require("path");
 const webpack = require("webpack");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
+console.log("---- process.env.NODE_ENV");
+console.log(process.env.NODE_ENV);
+
 const baseConfig = {
   mode: process.env.NODE_ENV === "production" ? "production" : "development",
   output: {
@@ -66,7 +69,7 @@ const baseConfig = {
           },
           compress: {
             // remove console.logs
-            comments: process.env.NODE_ENV === "production" ? true : false,
+            drop_console: process.env.NODE_ENV === "production" ? true : false,
           },
         },
       }),
