@@ -10,7 +10,6 @@ An embeddable widget for websites to advertise they are crowdfunding. Collects m
 - ✅  ReactJS for modern delightful UI/UX
 
 ### Coming Soon
-- ✨  Non-intrusive & high performance thanks to `web workers`. Barely touches the main JS thread.
 - ✨  Low package size with `webpack tree-shaking`
 - ✨  Integration with Google Analytics & Segment.io
 - ✨  Customizeable triggers & display
@@ -20,6 +19,9 @@ An embeddable widget for websites to advertise they are crowdfunding. Collects m
 - 🎖  Installable `npm` module for server side rendering
 - 🎖  Bypass most adblockers with `custom domains` & `server side rendering`
 - 🎖  Compatible with `FLoC` (Federated Learning of Cohorts, Google's upcoming replacement for cookies)
+
+### Nevermind
+- ✨ ~~ Non-intrusive & high performance thanks to `web workers`. Barely touches the main JS thread.~~ nevermind, the juice ain't worth the squeeze due to XSS security protections. [See closed PR.](https://github.com/kangzeroo/powered-by-funder/pull/1#issue-678462557)
 
 ## Setup
 
