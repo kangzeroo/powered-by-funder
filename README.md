@@ -13,6 +13,7 @@ An embeddable widget for websites to advertise they are crowdfunding. Collects m
 - ✨  High performance thanks to `web workers`. Barely touches the main JS thread.
 - ✨  Low package size with `webpack tree-shaking`
 - ✨  Integration with Google Analytics & Segment.io
+- ✨  Customizeable triggers & display
 - ✨  API versioning
 
 ### Roadmap
