@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment, useRef } from "react";
+import { Transition } from "react-transition-group";
+import { PanelAnimation, Panel } from "../Panel";
 
 const sleep = async (milliseconds: number) => {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -9,7 +11,6 @@ type TPhase = {
   message: string;
   duration: number;
   nextPhase: string;
-  ahref: string;
 };
 type TPhases = {
   [key: string]: TPhase;
@@ -18,69 +19,90 @@ interface IXState {
   phases: TPhases;
   nextPhase: (currentPhaseKey: string) => string;
 }
+const DefaultPoweredByFunder = {
+  key: "funder",
+  message: "⚡️ Powered by Funder",
+  duration: 4000,
+  nextPhase: "1",
+};
 const XState: IXState = {
   phases: {
     "1": {
       key: "1",
-      message: "🎉 StartEngine is fundraising!",
+      message: "🎉 HEMPITECTURE is fundraising!",
       duration: 2000,
       nextPhase: "2",
-      ahref: "https://wefunder.com/hempitecture",
     },
     "2": {
       key: "2",
       message: "😇 Join as our Angel Investor",
       duration: 2000,
       nextPhase: "3",
-      ahref: "https://wefunder.com/hempitecture",
     },
     "3": {
       key: "3",
       message: "🚀 Participate with $100+",
       duration: 2000,
-      nextPhase: "4",
-      ahref: "https://wefunder.com/hempitecture",
+      nextPhase: "funder",
     },
-    "4": {
-      key: "4",
-      message: "⚡️ Powered by Wefunder",
-      duration: 4000,
-      nextPhase: "1",
-      ahref: "https://wefunder.com/hempitecture",
-    },
+    funder: DefaultPoweredByFunder,
   },
   nextPhase: function (currentPhaseKey): string {
     const nextPhaseKey = this.phases[currentPhaseKey].nextPhase;
-    console.log(
-      `Transitioning from phase ${currentPhaseKey} to ${nextPhaseKey}`
-    );
+    // console.log(
+    //   `Transitioning from phase ${currentPhaseKey} to ${nextPhaseKey}`
+    // );
     return nextPhaseKey;
   },
 };
 
 const App = () => {
+  const [showPanel, setShowPanel] = useState<boolean>(false);
   const [message, setMessage] = useState<TPhase>();
+  const nodeRef = useRef(null);
 
   useEffect(() => {
-    const transitionXState = async () => {
-      console.log("transitionXState");
-      let currentPhaseKey = "1";
-      while (true) {
-        const phase = XState.phases[currentPhaseKey];
-        setMessage(phase);
-        await sleep(phase.duration);
-        const nextPhaseIndex = XState.nextPhase(currentPhaseKey);
-        currentPhaseKey = nextPhaseIndex;
-        console.log(nextPhaseIndex);
-      }
-    };
-    transitionXState();
-  }, []);
+    console.log("showPanel changed to ", showPanel);
+    if (showPanel) {
+      setMessage(DefaultPoweredByFunder);
+    } else {
+      const transitionXState = async () => {
+        console.log("transitionXState");
+        let currentPhaseKey = "1";
+        while (!showPanel) {
+          const phase = XState.phases[currentPhaseKey];
+          setMessage(phase);
+          await sleep(phase.duration);
+          console.log(showPanel);
+          const nextPhaseIndex = XState.nextPhase(currentPhaseKey);
+          currentPhaseKey = nextPhaseIndex;
+        }
+      };
+      transitionXState();
+    }
+  }, [showPanel]);
+
+  const expandPanel = () => {
+    setShowPanel(true);
+  };
+
+  const closePanel = () => {
+    setShowPanel(false);
+  };
 
   return (
-    <a href={message?.ahref} target="_blank">
-      <section style={styles.anchored}>{message?.message}</section>
-    </a>
+    <Fragment>
+      <Transition nodeRef={nodeRef} in={showPanel} timeout={1000} unmountOnExit>
+        {(state) => (
+          <PanelAnimation>
+            <Panel closePanel={closePanel} />
+          </PanelAnimation>
+        )}
+      </Transition>
+      <section onClick={expandPanel} style={styles.anchored}>
+        {message?.message}
+      </section>
+    </Fragment>
   );
 };
 
