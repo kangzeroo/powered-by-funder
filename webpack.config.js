@@ -9,6 +9,7 @@ const baseConfig = {
     filename: "[name].js",
     umdNamedDefine: true,
   },
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
