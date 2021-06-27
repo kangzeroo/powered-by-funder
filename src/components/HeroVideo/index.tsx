@@ -1,7 +1,7 @@
 import React from "react";
 
 const HeroVideo = () => {
-  const screenWidth = (screen.width < 560 ? screen.width : 560) - 20;
+  const screenWidth = (screen.width < 800 ? screen.width : 800) - 20;
   const videoHeight = screenWidth * (315 / 560);
   return (
     <section style={styles.hero({ height: videoHeight })}>

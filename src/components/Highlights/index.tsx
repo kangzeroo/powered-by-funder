@@ -44,6 +44,7 @@ const styles = {
     flexDirection: "column" as "column",
     justifyContent: "flex-start",
     alignItems: "flex-start",
+    fontFamily: "arial, sans-serif",
   },
 };
 export default Highlights;

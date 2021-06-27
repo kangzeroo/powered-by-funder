@@ -87,7 +87,11 @@ const App = () => {
   };
 
   const expandPanel = () => {
-    setPanel(true);
+    if (showPanel) {
+      window.open("https://wefunder.com/", "_blank");
+    } else {
+      setPanel(true);
+    }
   };
 
   const closePanel = () => {
@@ -122,9 +126,10 @@ const styles = {
     border: "0 solid #eff2f7",
     backgroundColor: "#3177b8",
     color: "#ffffff",
-    fontFamily: "Gotham SSm A,Gotham SSm B,Helvetica,Arial,sans-serif",
+    fontFamily: "arial, sans-serif",
     padding: "0.5em",
     borderRadius: "1em",
+    cursor: "pointer",
   },
 };
 

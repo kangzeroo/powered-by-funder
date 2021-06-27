@@ -28,6 +28,7 @@ const styles = {
     justifyContent: "flex-start",
     alignItems: "flex-start",
     padding: "10px 20px 10px 20px",
+    fontFamily: "arial, sans-serif",
   },
   raiseBar: {
     width: "100%",
