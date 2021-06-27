@@ -2,6 +2,11 @@
 
 An embeddable widget for websites to advertise they are crowdfunding. Collects marketing data and funnels traffic towards the company's angel fundraising page.
 
+
+![2021-06-27 19 20 47](https://user-images.githubusercontent.com/22982964/123542754-ef439680-d77d-11eb-86db-a86ce672a616.gif)
+
+[View Temporary Deployment](https://firebasestorage.googleapis.com/v0/b/video-entropy.appspot.com/o/funder%2Fdemo-remote.html?alt=media&token=fe713e24-97bd-437e-90b4-ff8f54cfc501)
+
 ### Awesome Features
 - ✅  Simple `<script async>` tag embed onto websites
 - ✅  Universal compatibility on all websites thanks to `UMD+AMD build`
