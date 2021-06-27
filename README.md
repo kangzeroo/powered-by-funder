@@ -10,7 +10,6 @@ An embeddable widget for websites to advertise they are crowdfunding. Collects m
 - ✅  ReactJS for modern delightful UI/UX
 
 ### Coming Soon
-- ✨  Non-intrusive & high performance thanks to `web workers`. Barely touches the main JS thread.
 - ✨  Low package size with `webpack tree-shaking`
 - ✨  Integration with Google Analytics & Segment.io
 - ✨  Customizeable triggers & display
@@ -20,6 +19,14 @@ An embeddable widget for websites to advertise they are crowdfunding. Collects m
 - 🎖  Installable `npm` module for server side rendering
 - 🎖  Bypass most adblockers with `custom domains` & `server side rendering`
 - 🎖  Compatible with `FLoC` (Federated Learning of Cohorts, Google's upcoming replacement for cookies)
+
+
+### Questionable Feature
+- 🤔  Non-intrusive & high performance thanks to `web workers`. Barely touches the main JS thread.
+    - However, it's not simple to load the web worker directly due to it being [cross origin and open to XSS attacks](https://github.com/w3c/ServiceWorker/issues/940#issuecomment-280964703)
+    - Two possible workarounds:
+        - 1. [Load the widget as an iframe](https://newbedev.com/execute-web-worker-from-different-origin) and load the webworker in the same iframe so that its the same origin (from CDN)
+        - 2. Keep the widget NOT an iframe and instead [load the webworker as base64](https://stackoverflow.com/a/62911462) and convert into a script
 
 ## Setup
 
