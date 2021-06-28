@@ -1,6 +1,7 @@
 const path = require("path");
 const webpack = require("webpack");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 console.log("---- process.env.NODE_ENV");
 console.log(process.env.NODE_ENV);
@@ -20,6 +21,10 @@ const baseConfig = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
+      },
+      {
         test: /\.tsx?$/,
         loader: "awesome-typescript-loader",
         exclude: /node_modules/,
@@ -37,10 +42,6 @@ const baseConfig = {
             },
           },
         ],
-      },
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,

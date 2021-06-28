@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import Topbar from "../Topbar";
 import HeroVideo from "../HeroVideo";
 import MidFold from "../MidFold";
@@ -13,33 +12,20 @@ export const Panel = ({
   closePanel: React.MouseEventHandler;
 }) => {
   return (
-    <main style={styles.panel}>
-      <Topbar closePanel={closePanel} />
-      <HeroVideo />
-      <div style={styles.midLockWidth}>
-        <MidFold />
-        <Highlights />
-        <CallToAction />
-      </div>
-      <Footer />
-    </main>
+    <div style={styles.panelWrapper}>
+      <main style={styles.panel}>
+        <Topbar closePanel={closePanel} />
+        <HeroVideo />
+        <div style={styles.midLockWidth}>
+          <MidFold />
+          <Highlights />
+          <CallToAction />
+        </div>
+        <Footer />
+      </main>
+    </div>
   );
 };
-export const PanelAnimation = styled.div`
-  height: 100%;
-  width: 100%;
-  min-height: 100%;
-  min-width: 100%;
-  max-width: 800px;
-  overflow-y: scroll;
-  left: 0px;
-  bottom: 0px;
-  position: absolute;
-  transition: 5s;
-  background-color: #ffffff;
-  color: #15263d;
-  transition-timing-function: ease-in;
-`;
 
 const styles = {
   panel: {
@@ -47,6 +33,21 @@ const styles = {
     flexDirection: "column" as "column",
     justifyContent: "flex-start",
     alignItems: "center",
+  },
+  panelWrapper: {
+    height: "100%",
+    width: "100%",
+    minHeight: "100%",
+    minWidth: "100%",
+    maxWidth: "800px",
+    overflowY: "scroll" as "scroll",
+    left: "0px",
+    bottom: "0px",
+    position: "absolute" as "absolute",
+    transition: "5s",
+    backgroundColor: "#ffffff",
+    color: "#15263d",
+    transitionTimingFunction: "ease-in",
   },
   midLockWidth: {
     width: "100%",
