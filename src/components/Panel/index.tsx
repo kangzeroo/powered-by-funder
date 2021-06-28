@@ -43,7 +43,7 @@ const styles = {
     overflowY: "scroll" as "scroll",
     left: "0px",
     bottom: "0px",
-    position: "absolute" as "absolute",
+    position: "fixed" as "fixed",
     transition: "5s",
     backgroundColor: "#ffffff",
     color: "#15263d",

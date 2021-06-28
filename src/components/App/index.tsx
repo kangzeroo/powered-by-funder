@@ -33,7 +33,7 @@ const XState: IXState = {
   phases: {
     start: {
       key: "start",
-      message: "🎉 HEMPITECTURE is fundraising!",
+      message: "🎉 We are crowdfunding!",
       duration: 2000,
       nextPhase: "2",
     },
@@ -149,7 +149,7 @@ const App = () => {
 
 const styles = {
   anchored: {
-    position: "absolute" as "absolute",
+    position: "fixed" as "fixed",
     bottom: "1em",
     right: "1em",
     width: "200px",
